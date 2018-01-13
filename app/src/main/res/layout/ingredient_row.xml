@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/ingredient_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/itembackground"
+        android:elevation="@dimen/fab_elevation_resting"
+        android:inputType="textCapSentences"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:padding="@dimen/item_padding"
+        android:layout_marginLeft="@dimen/item_padding"
+        android:layout_marginStart="@dimen/item_padding"
+        android:hint="@string/ingredient_hint_text"
+        tools:targetApi="lollipop" />
+
+    <EditText
+        android:id="@+id/ingredient_amount_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:layout_marginStart="@dimen/item_margin"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:padding="@dimen/item_padding"
+        android:background="@color/itembackground"
+        android:elevation="@dimen/fab_elevation_resting"
+        android:hint="@string/ingredient_amount_hint_text"
+        android:inputType="numberDecimal"
+        android:maxEms="3"
+        tools:targetApi="lollipop" />
+
+    <Spinner
+        android:id="@+id/scales_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:dropDownSelector="@color/itembackground"
+        android:elevation="@dimen/fab_elevation_resting"
+        android:entries="@array/scales_array"
+        android:popupBackground="@color/itembackground"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:prompt="@string/scales_prompt"
+        tools:targetApi="lollipop" />
+    <Button
+        android:id="@+id/remove_ingredient"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:drawable/ic_delete" />
+
+</LinearLayout>

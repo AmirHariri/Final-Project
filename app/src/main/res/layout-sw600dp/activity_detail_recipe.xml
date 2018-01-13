@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/itembackground"
+    tools:context="com.cangetinshape.chefbook.DetailRecipeActivity"
+    >
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/detail_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            tools:targetApi="lollipop" >
+
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/itembackground"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/itembackground"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:layout_marginTop="@dimen/item_margin"
+                    android:layout_marginEnd="@dimen/item_margin"
+                    android:layout_marginRight="@dimen/item_margin"
+                    android:gravity="start"
+                    android:textAllCaps="true"
+                    style="@style/MediumTextStyle"
+                    android:textStyle="bold"
+                    tools:text="@string/title_text" />
+
+                <TextView
+                    android:id="@+id/category_tv_toshow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:layout_marginEnd="@dimen/item_margin"
+                    android:layout_marginRight="@dimen/item_margin"
+                    style="@style/MediumTextStyle"
+                    tools:text="@string/category_text" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end|bottom"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/main_iv"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/pic_placeholder"
+                        android:contentDescription="@string/recipe_image" />
+
+                    <ImageView
+                        android:id="@+id/second_iv"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/pic_placeholder"
+                        android:contentDescription="@string/recipe_image"
+                        />
+
+                    <ImageView
+                        android:id="@+id/third_iv"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/pic_placeholder"
+                        tools:targetApi="lollipop"
+                        android:contentDescription="@string/recipe_image"/>
+
+                    <ImageView
+                        android:id="@+id/forth_iv"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/pic_placeholder"
+                        android:contentDescription="@string/recipe_image"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/added_by_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/item_margin"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:layout_marginEnd="@dimen/item_margin"
+                    android:layout_marginRight="@dimen/item_margin"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/ltgray"
+                    tools:text="@string/user_name" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/item_margin"
+                android:layout_marginTop="@dimen/item_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recipe_serving_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:text="@string/servings_txt"
+                    android:textAppearance="?android:textAppearanceMedium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/prep_time_tv_single"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/prep_time_txt"
+                        android:textAppearance="?android:textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/prep_time_tv_int"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        tools:text="@string/sample_time" />
+
+                    <TextView
+                        android:id="@+id/yeild_time_tv_single"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/yeild_time_tv_single"
+                        android:textAppearance="?android:textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/yeild_time_tv_int"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        tools:text="@string/sample_time" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin"
+                    android:layout_marginStart="@dimen/item_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cook_time_tv_single"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/cook_time_tv"
+                        android:textAppearance="?android:textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/cook_time_tv_int"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        tools:text="@string/sample_time" />
+
+                    <TextView
+                        android:id="@+id/list_total_time_tv_single"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/total_time_tv"
+                        android:textAppearance="?android:textAppearanceSmall" />
+
+                    <TextView
+                        android:id="@+id/list_total_time_tv_int"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        tools:text="@string/sample_time" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/theme_accent" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/item_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ingredient_tv"
+                        android:layout_marginTop="@dimen/edit_image_margin"
+                        style="@style/MediumTextStyle" />
+
+                    <ListView
+                        android:id="@+id/ingredient_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/item_margin"
+                        android:padding="@dimen/item_margin"
+                        android:background="@drawable/layout_background"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4"
+                    android:layout_margin="@dimen/item_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/edit_image_margin"
+                        android:text="@string/direction_tv"
+                        style="@style/MediumTextStyle" />
+
+                    <ListView
+                        android:id="@+id/steps_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/item_margin"
+                        android:padding="@dimen/item_margin"
+                        android:background="@drawable/layout_background"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/ad_view_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                ads:adSize="BANNER"
+                ads:adUnitId="@string/test_banner_ad_unit_id">
+            </com.google.android.gms.ads.AdView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

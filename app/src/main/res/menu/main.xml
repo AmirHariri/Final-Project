@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings_menu_item"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="1"
+        />
+    <item
+        android:id="@+id/action_sign_in"
+        android:title="@string/sign_in_text"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/action_sign_out"
+        android:title="@string/sign_out_text"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="3"/>
+    <item android:id="@+id/action_online_recipes"
+        android:title="@string/action_browse_chefbook_database"
+        android:icon="@drawable/from_cb_database"
+        app:showAsAction="always"
+         />
+
+</menu>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.cangetinshape.chefbook.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            tools:targetApi="lollipop">
+
+            <TextView
+                android:id="@+id/user_name__tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/user_name"
+                android:gravity="center|end"
+                tools:text="@string/user_name" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/itembackground"
+        tools:context="com.cangetinshape.chefbook.MainActivity">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background"
+            tools:ignore="ContentDescription" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingBottom="28dp"
+            android:paddingLeft="@dimen/list_side_margin"
+            android:paddingRight="@dimen/list_side_margin"
+            android:paddingTop="24dp"
+            android:descendantFocusability="afterDescendants"
+            android:scrollbarStyle="outsideOverlay" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/fab_bottom_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:contentDescription="@string/action_add"
+            android:src="@drawable/ic_add_circle_outline_black_24dp"
+            app:elevation="@dimen/fab_elevation_resting"
+            app:pressedTranslationZ="@dimen/fab_press_translation_z" />
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/test_banner_ad_unit_id">
+
+        </com.google.android.gms.ads.AdView>
+
+    </FrameLayout>
+</LinearLayout>

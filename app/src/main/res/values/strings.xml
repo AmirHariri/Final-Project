@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">ChefBook</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="action_add">add</string>
+    <string name="title_hint_txt">Enter recipe title here</string>
+    <string name="servings_txt">Servings: </string>
+    <string name="person">pers</string>
+    <string name="category_prompt">Category</string>
+    <string name="category_text">Category: </string>
+    <string name="error">Error finding image</string>
+    <string name="saved_message">Image Saved at %1$s</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="take_photo">Take a photo</string>
+    <string name="prep_time_tv">Preparation time:</string>
+    <string name="prep_time_hint_text">min</string>
+    <string name="cook_time_tv">Cooking time: </string>
+    <string name="cook_time_hint_text">min</string>
+    <string name="yeild_time_tv">Yield time: </string>
+    <string name="yeild_time_hint_text">min</string>
+    <string name="total_time_hint_text">min</string>
+    <string name="total_time_tv">Total time: </string>
+    <string name="ingredient_tv">Ingredients:</string>
+    <string name="add_ingredient_btn_text">+ Ingredient</string>
+    <string name="ingredient_hint_text">Enter ingredient here</string>
+    <string name="ingredient_amount_hint_text">0.00</string>
+    <string name="scales_prompt">Scale</string>
+    <string name="step_tv">Steps: </string>
+    <string name="steps_text_hint"> Step</string>
+    <string name="add_step_btn_text">+Step</string>
+    <string name="save_btn_text">Save</string>
+    <string name="click_ingredient_txt">Click on INGREDIENT button to add ingrredient.</string>
+    <string name="click_steps_txt">Click on STEP button to add more steps.</string>
+    <string name="prep_time_txt">Preparation time: </string>
+    <string name="yeild_time_tv_single">Yield time: </string>
+    <string name="delete_menu_item">delete</string>
+    <string name="direction_tv">Directions: </string>
+    <string name="appwidget_text">Best recipe</string>
+    <string name="add_widget">Add widget</string>
+    <string name="empty_view_text">Empty recipe directory</string>
+    <string name="sign_out_text">Sign out</string>
+    <string name="user_name">User\'s name</string>
+    <string name="return_from_add_new_recipe">Do you want to Exit and Discard your changes?</string>
+    <string name="no_text">No</string>
+    <string name="yes_text">Yes</string>
+    <string name="dialog_delet_text">Do you want to Delete the current recipe?</string>
+    <string name="cancel_text">Cancel</string>
+    <string name="delete_text">Delete</string>
+
+
+    <string name="sign_in_as">Signed in as: </string>
+    <string name="action_share">Share</string>
+    <string name="action_save_online">Save to ChefBook dataBase</string>
+    <string name="action_browse_chefbook_database">Browse ChefBook\'s shared recipes</string>
+    <string name="test_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="title_text">Title</string>
+    <string name="sample_time">100 min</string>
+    <string name="added_by_text">Added by: </string>
+    <string name="online_activity_text">Recipe pool</string>
+    <string name="chefbook">ChefBook</string>
+    <string name="recipe_image">image provided</string>
+
+</resources>

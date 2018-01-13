@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:id="@+id/step_et"
+        android:hint="@string/steps_text_hint"
+        android:layout_width="0dp"
+        android:background="@color/itembackground"
+        android:elevation="@dimen/fab_elevation_resting"
+        android:inputType="textCapSentences"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:layout_marginLeft="@dimen/item_padding"
+        android:layout_marginStart="@dimen/item_padding"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop" />
+
+    <Button
+        android:id="@+id/remove_step"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:drawable/ic_delete" />
+
+</LinearLayout>

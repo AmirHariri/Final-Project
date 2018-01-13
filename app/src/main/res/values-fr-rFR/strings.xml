@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChefBook</string>
+    <string name="settings_menu_item">Paramètres</string>
+    <string name="sign_in_text">Se connecter</string>
+    <string name="action_add">ajouter</string>
+    <string name="title_hint_txt">Entrez le titre de la recette ici</string>
+    <string name="servings_txt">Portions: </string>
+    <string name="person">pers.</string>
+    <string name="category_prompt">Catégorie</string>
+    <string name="category_text">Catégorie:</string>
+    <string name="error">Erreur de recherche d\'image</string>
+    <string name="saved_message">Image enregistrée à %1$s</string>
+    <string name="permission_denied">Permission refusée</string>
+    <string name="take_photo">Prendre une photo</string>
+    <string name="prep_time_tv">Temps de préparation:</string>
+    <string name="prep_time_hint_text">min</string>
+    <string name="cook_time_tv">Temps de cuisson:</string>
+    <string name="cook_time_hint_text">min</string>
+    <string name="yeild_time_tv">Temps de rendement:</string>
+    <string name="yeild_time_hint_text">min</string>
+    <string name="total_time_hint_text">min</string>
+    <string name="total_time_tv">Temps total:</string>
+    <string name="ingredient_tv">Ingrédients:</string>
+    <string name="add_ingredient_btn_text">+ Ingrédients</string>
+    <string name="ingredient_hint_text">Entrez l\'ingrédient ici</string>
+    <string name="ingredient_amount_hint_text">0.00</string>
+    <string name="scales_prompt">Échelle</string>
+    <string name="step_tv">Pas:</string>
+    <string name="steps_text_hint"> Étape</string>
+    <string name="add_step_btn_text">+Étape</string>
+    <string name="save_btn_text">Sauvegarder</string>
+    <string name="click_ingredient_txt">Cliquez sur le bouton Ingrédient pour ajouter un ingrédient.</string>
+    <string name="click_steps_txt">Cliquez sur le bouton STEP pour ajouter d\'autres étapes.</string>
+    <string name="prep_time_txt">Temps de préparation: </string>
+    <string name="yeild_time_tv_single">Temps de rendement:</string>
+    <string name="delete_menu_item">effacer</string>
+    <string name="direction_tv">Directions:</string>
+    <string name="appwidget_text">Meilleure recette</string>
+    <string name="add_widget">Ajouter un widget</string>
+    <string name="empty_view_text">Répertoire de recettes vide</string>
+    <string name="sign_out_text">Déconnexion</string>
+    <string name="user_name">Nom de l\'utilisateur</string>
+    <string name="sign_in_as">Connecté en tant que: </string>
+    <string name="action_share">Partager</string>
+    <string name="action_save_online">Enregistrer dans la base de données ChefBook</string>
+    <string name="test_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="title_text">Titre</string>
+    <string name="sample_time">100 min</string>
+    <string name="added_by_text">Ajouté par:</string>
+    <string name="online_activity_text">Pool de recettes</string>
+    <string name="chefbook">ChefBook</string>
+    <string name="recipe_image">image fournie</string>
+    <string name="action_browse_chefbook_database">Parcourir les recettes partagées de ChefBook</string>
+    <string name="return_from_add_new_recipe">Voulez-vous quitter et ignorer vos modifications?</string>
+    <string name="no_text">Non</string>
+    <string name="yes_text">Oui</string>
+    <string name="dialog_delet_text">Voulez-vous supprimer la recette actuelle?</string>
+    <string name="cancel_text">Annuler</string>
+    <string name="delete_text">Effacer</string>
+    Parcourir les recettes partagées de ChefBook
+
+</resources>

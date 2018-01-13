@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/itembackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context="com.cangetinshape.chefbook.OnlineRecipesActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/od_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/od_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        tools:targetApi="lollipop">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:text="@string/online_activity_text"/>
+        <TextView
+            android:id="@+id/od_user_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:layout_marginBottom="@dimen/item_padding"
+            android:layout_marginRight="@dimen/item_padding"
+            android:layout_marginEnd="@dimen/item_padding"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/user_name"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/ltgray"
+            tools:text="@string/user_name" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/od_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+
+        android:focusableInTouchMode="true"
+        android:paddingBottom="28dp"
+        android:paddingLeft="@dimen/list_side_margin"
+        android:paddingRight="@dimen/list_side_margin"
+        android:paddingTop="24dp"
+        android:descendantFocusability="afterDescendants"
+        android:scrollbarStyle="outsideOverlay" />
+
+    </FrameLayout>
+</LinearLayout>

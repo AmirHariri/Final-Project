@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>اصلی</item>
+        <item>صبحانه</item>
+        <item>دسر</item>
+        <item>پیش غذا</item>
+        <item>اسنک</item>
+    </string-array>
+
+    <string-array name="scales_array">
+        <item>گرم</item>
+        <item>کیلوگرم</item>
+        <item>پوند</item>
+        <item>اونس</item>
+        <item>قاشق غذاخوری</item>
+        <item>قاشق چایی خوری</item>
+        <item>کامل</item>
+        <item>نصف</item>
+
+        <item>فنجان</item>
+        <item>میلی لیتر</item>
+
+    </string-array>
+</resources>

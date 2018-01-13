@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>Main</item>
+        <item>Breakfast</item>
+        <item>Dessert</item>
+        <item>Appetizer</item>
+        <item>Snack</item>
+    </string-array>
+
+    <string-array name="scales_array">
+        <item>gr</item>
+        <item>Kg</item>
+        <item>lbs</item>
+        <item>oz</item>
+        <item>tbsp</item>
+        <item>tsp</item>
+        <item>full</item>
+        <item>half</item>
+        <item>cup</item>
+        <item>mil</item>
+
+    </string-array>
+</resources>

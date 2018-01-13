@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "931902787359",
+    "firebase_url": "https://chefbook-de995.firebaseio.com",
+    "project_id": "chefbook-de995",
+    "storage_bucket": "chefbook-de995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931902787359:android:77ab64690d1b4a6c",
+        "android_client_info": {
+          "package_name": "com.cangetinshape.chefbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931902787359-ecpn4rb3url57ok6d7646kn100i2me8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cangetinshape.chefbook",
+            "certificate_hash": "f4cc2d22c9c25b49b028fd798e816a2a10b5d30c"
+          }
+        },
+        {
+          "client_id": "931902787359-eokmq3f73lavb79ggb39n6965247ltau.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrKc3eu750Je1pO_AA0B7gK4LoEJsYRMg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931902787359-eokmq3f73lavb79ggb39n6965247ltau.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="photo_placeholder">@color/theme_primary_light</color>
+
+    <color name="theme_primary">#3d5afe</color>
+    <color name="theme_primary_dark">#303F9F</color>
+    <color name="theme_primary_light">#C5CAE9</color>
+    <color name="theme_accent">#00897b</color>
+    <color name="dark_text">#212121</color>
+    <color name="ltgray">#ffe0e0e0</color>
+    <color name="background">#ff9500</color>
+    <color name="itembackground">#CDDC39</color>
+
+</resources>

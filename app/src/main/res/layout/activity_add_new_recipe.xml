@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.cangetinshape.chefbook.AddNewRecipeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/title_item_margin"
+            android:background="@color/itembackground"
+            android:elevation="@dimen/fab_elevation_resting"
+            android:hint="@string/title_hint_txt"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/item_margin"
+            style="@style/MediumTextStyle"
+            android:nextFocusForward="@id/servint_et"
+            tools:targetApi="lollipop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_margin"
+            android:background="@color/itembackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/serving_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin"
+                android:layout_marginStart="@dimen/item_margin"
+                android:layout_weight="1"
+                android:text="@string/servings_txt"
+                style="@style/BoldTextStyle"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/servint_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:gravity="center"
+                android:hint="@string/person"
+                android:inputType="number"
+                android:maxEms="2"
+                android:background="@drawable/layout_background"
+                android:padding="@dimen/item_margin"
+                style="@style/MediumTextStyle"
+                android:nextFocusForward="@id/category_spinner"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/category_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_marginStart="@dimen/edit_image_margin"
+                android:layout_marginLeft="@dimen/edit_image_margin"
+                android:text="@string/category_text"
+                style="@style/BoldTextStyle"
+                />
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:dropDownSelector="@color/itembackground"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:entries="@array/categories_array"
+                android:popupBackground="@color/itembackground"
+                android:prompt="@string/category_prompt"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:nextFocusForward="@id/first_image"
+                tools:targetApi="lollipop" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/edit_image_margin"
+            android:layout_marginBottom="@dimen/edit_image_margin"
+            android:background="@android:color/background_light">
+
+            <ImageView
+                android:id="@+id/first_image"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/edit_image_margin"
+                android:layout_marginStart="@dimen/edit_image_margin"
+                android:layout_marginTop="@dimen/edit_image_margin"
+                android:foregroundGravity="fill_horizontal"
+                android:onClick="takePicture"
+                android:nextFocusForward="@id/second_image"
+                android:src="@drawable/camera_placeholder"
+                android:contentDescription="@string/take_photo"
+                />
+
+            <ImageView
+                android:id="@+id/second_image"
+                android:layout_width="00dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/edit_image_margin"
+                android:layout_marginRight="@dimen/edit_image_margin"
+                android:layout_marginTop="@dimen/edit_image_margin"
+                android:onClick="takePicture"
+                android:nextFocusForward="@id/third_image"
+                android:src="@drawable/camera_placeholder"
+                android:contentDescription="@string/take_photo"
+                />
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/edit_image_margin"
+        android:layout_marginBottom="@dimen/edit_image_margin">
+
+            <ImageView
+                android:id="@+id/third_image"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginBottom="@dimen/edit_image_margin"
+                android:layout_marginLeft="@dimen/edit_image_margin"
+                android:layout_marginStart="@dimen/edit_image_margin"
+                android:onClick="takePicture"
+                android:nextFocusForward="@id/forth_image"
+                android:src="@drawable/camera_placeholder"
+                android:contentDescription="@string/take_photo" />
+
+            <ImageView
+                android:id="@+id/forth_image"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/edit_image_margin"
+                android:layout_marginRight="@dimen/edit_image_margin"
+                android:onClick="takePicture"
+                android:nextFocusForward="@id/prep_time_et"
+                android:src="@drawable/camera_placeholder"
+                android:contentDescription="@string/take_photo"
+                 />
+    </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_margin"
+            android:background="@color/itembackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/prep_time_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_padding"
+                android:layout_marginStart="@dimen/item_padding"
+                android:layout_weight="2"
+                android:text="@string/prep_time_tv"
+                style="@style/BoldTextStyle" />
+
+            <EditText
+                android:id="@+id/prep_time_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:gravity="center"
+                android:hint="@string/prep_time_hint_text"
+                android:inputType="number"
+                android:padding="@dimen/item_margin"
+                style="@style/SmallTextStyle"
+                android:nextFocusForward="@id/cook_time_et"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/cook_time_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin"
+                android:layout_marginStart="@dimen/item_margin"
+                android:layout_weight="2"
+                android:text="@string/cook_time_tv"
+                style="@style/BoldTextStyle" />
+
+            <EditText
+                android:id="@+id/cook_time_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/item_padding"
+                android:layout_marginRight="@dimen/item_padding"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:gravity="center"
+                android:hint="@string/cook_time_hint_text"
+                android:inputType="number"
+                android:padding="@dimen/item_margin"
+                style="@style/SmallTextStyle"
+                android:nextFocusForward="@id/yeild_time_et"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_margin"
+
+            android:background="@color/itembackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/yeild_time_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_padding"
+                android:layout_marginStart="@dimen/item_padding"
+                android:layout_weight="2"
+                android:text="@string/yeild_time_tv"
+                style="@style/BoldTextStyle" />
+
+            <EditText
+                android:id="@+id/yeild_time_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:gravity="center"
+                android:hint="@string/yeild_time_hint_text"
+                android:inputType="number"
+                android:padding="@dimen/item_margin"
+                style="@style/SmallTextStyle"
+                android:nextFocusForward="@id/total_time_et"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:id="@+id/total_time_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin"
+                android:layout_marginStart="@dimen/item_margin"
+                android:layout_weight="2"
+                android:text="@string/total_time_tv"
+                style="@style/BoldTextStyle" />
+
+            <EditText
+                android:id="@+id/total_time_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/item_padding"
+                android:layout_marginRight="@dimen/item_padding"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:elevation="@dimen/fab_elevation_resting"
+                android:gravity="center"
+                android:hint="@string/total_time_hint_text"
+                android:inputType="number"
+                android:padding="@dimen/item_margin"
+                style="@style/SmallTextStyle"
+                android:nextFocusForward="@id/add_ingredient"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/item_margin"
+            android:layout_marginEnd="@dimen/item_margin"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:layout_marginRight="@dimen/item_margin"
+            android:layout_marginStart="@dimen/item_margin"
+            android:layout_marginTop="@dimen/item_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/item_margin"
+                android:layout_marginTop="@dimen/item_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_ingredient"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/theme_accent"
+                    android:layout_marginEnd="@dimen/item_padding"
+                    android:layout_marginLeft="@dimen/item_padding"
+                    android:layout_marginRight="@dimen/item_padding"
+                    android:layout_marginStart="@dimen/item_padding"
+                    android:elevation="@dimen/button_elevation_rest"
+                    android:text="@string/add_ingredient_btn_text"
+                    android:nextFocusForward="@id/add_step"
+                    tools:targetApi="lollipop" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/hint_ingredient_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/click_ingredient_txt"
+                style="@style/BoldTextStyle"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/ingredient_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/itembackground"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/item_margin"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:layout_marginRight="@dimen/item_margin"
+            android:layout_marginStart="@dimen/item_margin"
+            android:layout_marginTop="@dimen/item_margin"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/item_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/item_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_step"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textColor="@color/theme_accent"
+                    android:layout_marginEnd="@dimen/item_padding"
+                    android:layout_marginLeft="@dimen/item_padding"
+                    android:layout_marginRight="@dimen/item_padding"
+                    android:layout_marginStart="@dimen/item_padding"
+                    android:nextFocusForward="@id/save_btn"
+                    android:text="@string/add_step_btn_text" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/hint_steps_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/click_steps_txt"
+                style="@style/BoldTextStyle"
+                android:visibility="visible" />
+
+
+            <LinearLayout
+                android:id="@+id/steps_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/itembackground"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/save_btn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:onClick="saveRecipe"
+            android:text="@string/save_btn_text" />
+
+    </LinearLayout>
+
+
+</ScrollView>

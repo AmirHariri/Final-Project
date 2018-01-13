@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginLeft="@dimen/item_margin"
+    android:layout_marginStart="@dimen/item_margin"
+    android:layout_marginEnd="@dimen/item_margin"
+    android:layout_marginRight="@dimen/item_margin"
+    xmlns:tools="http://schemas.android.com/tools">
+    <TextView
+        android:id="@+id/ingredient_tv_toshow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.5"
+        android:layout_marginRight="@dimen/item_margin"
+        android:layout_marginEnd="@dimen/item_margin"
+        android:layout_marginStart="@dimen/item_margin"
+        android:layout_marginLeft="@dimen/item_margin"
+        android:textAppearance="?android:textAppearanceSmall"
+        tools:text="Ingredients"/>
+    <TextView
+        android:id="@+id/amount_tv_toshow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="Amount"/>
+    <TextView
+        android:id="@+id/scale_tv_toshow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        tools:text="scale"/>
+
+</LinearLayout>
