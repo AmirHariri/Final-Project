@@ -36,7 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddNewRecipeActivity extends AppCompatActivity  {
+public class AddNewRecipeActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 1;
@@ -56,7 +56,7 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
     private int mId;
 
     private EditText mRecipeTitle, mServings, mPrepTime, mCookingTime, mYeildTime, mTotalTime;
-    private Spinner  mCategory;
+    private Spinner mCategory;
     private List<EditText> mIngredients, mAmount, mUnit;
     private List<EditText> mSteps;
 
@@ -83,37 +83,37 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_recipe);
         //Images initialized
-        mFirstImage = (ImageView)findViewById(R.id.first_image);
-        mSecondImage = (ImageView)findViewById(R.id.second_image);
-        mThirdImage = (ImageView)findViewById(R.id.third_image);
-        mForthImage = (ImageView)findViewById(R.id.forth_image);
+        mFirstImage = findViewById(R.id.first_image);
+        mSecondImage = findViewById(R.id.second_image);
+        mThirdImage = findViewById(R.id.third_image);
+        mForthImage = findViewById(R.id.forth_image);
         //Initialize all the input parameters
 
-        mRecipeTitle = (EditText)findViewById(R.id.title_et);
-        mServings =(EditText)findViewById(R.id.servint_et);
-        mCategory = (Spinner)findViewById(R.id.category_spinner);
-        mPrepTime = (EditText)findViewById(R.id.prep_time_et);
-        mYeildTime = (EditText)findViewById(R.id.yeild_time_et);
-        mCookingTime = (EditText)findViewById(R.id.cook_time_et);
-        mTotalTime = (EditText)findViewById(R.id.total_time_et);
+        mRecipeTitle = findViewById(R.id.title_et);
+        mServings = findViewById(R.id.servint_et);
+        mCategory = findViewById(R.id.category_spinner);
+        mPrepTime = findViewById(R.id.prep_time_et);
+        mYeildTime = findViewById(R.id.yeild_time_et);
+        mCookingTime = findViewById(R.id.cook_time_et);
+        mTotalTime = findViewById(R.id.total_time_et);
 
-        final TextView ingredientHint = (TextView)findViewById(R.id.hint_ingredient_tv) ;
-        final TextView stepsHint = (TextView)findViewById(R.id.hint_steps_tv);
+        final TextView ingredientHint = findViewById(R.id.hint_ingredient_tv);
+        final TextView stepsHint = findViewById(R.id.hint_steps_tv);
 
         // to add more ingeredient if needed
-        ingredientContainer = (LinearLayout)findViewById(R.id.ingredient_container);
-        mAddIngredient = (Button)findViewById(R.id.add_ingredient);
+        ingredientContainer = findViewById(R.id.ingredient_container);
+        mAddIngredient = findViewById(R.id.add_ingredient);
         mAddIngredient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater layoutInflater =
-                        (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addIngredientView = layoutInflater.inflate(R.layout.ingredient_row, null);
-                Button buttonRemove = (Button)addIngredientView.findViewById(R.id.remove_ingredient);
-                final View.OnClickListener thisListener = new View.OnClickListener(){
+                Button buttonRemove = addIngredientView.findViewById(R.id.remove_ingredient);
+                final View.OnClickListener thisListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((LinearLayout)addIngredientView.getParent()).removeView(addIngredientView);
+                        ((LinearLayout) addIngredientView.getParent()).removeView(addIngredientView);
                         //listAllIngredientsAddView();
                     }
                 };
@@ -125,19 +125,19 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
         });
 
         // to add more steps if needed
-        stepsContainer = (LinearLayout) findViewById(R.id.steps_container);
-        mAddStep = (Button) findViewById(R.id.add_step);
+        stepsContainer = findViewById(R.id.steps_container);
+        mAddStep = findViewById(R.id.add_step);
         mAddStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LayoutInflater layoutInflater =
-                        (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View addView = layoutInflater.inflate(R.layout.step_row, null);
-                Button buttonRemove = (Button)addView.findViewById(R.id.remove_step);
-                final View.OnClickListener thisListener = new View.OnClickListener(){
+                Button buttonRemove = addView.findViewById(R.id.remove_step);
+                final View.OnClickListener thisListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((LinearLayout)addView.getParent()).removeView(addView);
+                        ((LinearLayout) addView.getParent()).removeView(addView);
                         //listAllStepsAddView();
                     }
                 };
@@ -188,34 +188,34 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
 
     private void launchCamera() {
         // Create the capture image intent
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            // Ensure that there's a camera activity to handle the intent
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                // Create the temporary File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = BitmapUtils.createTempImageFile(this);
-                    Log.i(TAG, "the photoFile path is:  "+photoFile.toString());
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
-                    ex.printStackTrace();
-                }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    // Get the path of the temporary file
-                    mTempPhotoPath = photoFile.getAbsolutePath();
-                    Log.i(TAG,"the absolute path is : " +  mTempPhotoPath);
-
-                    // Get the content URI for the image file
-                    Uri photoURI = FileProvider.getUriForFile(this,
-                            FILE_PROVIDER_AUTHORITY,
-                            photoFile);
-                    // Add the URI so the camera can store the image
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                    // Launch the camera activity
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-                }
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the temporary File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = BitmapUtils.createTempImageFile(this);
+                Log.i(TAG, "the photoFile path is:  " + photoFile.toString());
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                ex.printStackTrace();
             }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                // Get the path of the temporary file
+                mTempPhotoPath = photoFile.getAbsolutePath();
+                Log.i(TAG, "the absolute path is : " + mTempPhotoPath);
+
+                // Get the content URI for the image file
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        FILE_PROVIDER_AUTHORITY,
+                        photoFile);
+                // Add the URI so the camera can store the image
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                // Launch the camera activity
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
     }
 
     @Override
@@ -255,10 +255,10 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
 
     public void saveRecipe(View view) {
         //check if any of the input text are empty
-                if(mRecipeTitle.getText().length() == 0 || mPrepTime.getText().length() == 0 ||
-                        mCookingTime.getText().length() == 0 || mYeildTime.getText().length() == 0 ||
-                        mTotalTime.getText().length() == 0 ||mServings.getText().length() == 0 ){
-           Toast.makeText(this, "Please make sure you filled all the requiered informations",Toast.LENGTH_LONG).show();
+        if (mRecipeTitle.getText().length() == 0 || mPrepTime.getText().length() == 0 ||
+                mCookingTime.getText().length() == 0 || mYeildTime.getText().length() == 0 ||
+                mTotalTime.getText().length() == 0 || mServings.getText().length() == 0) {
+            Toast.makeText(this, getString(R.string.complete_all_the_input_fields_alert), Toast.LENGTH_LONG).show();
             return;
         }
         listAllIngredientsAddView();
@@ -273,7 +273,7 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
         finish();
     }
 
-     private void addNewBestRecipe(){
+    private void addNewBestRecipe() {
         mCv = new ContentValues();
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE, mRecipeTitle.getText().toString().trim());
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_SERVINGS, Integer.parseInt(mServings.getText().toString()));
@@ -284,10 +284,14 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_YEILD_TIME, Integer.parseInt(mYeildTime.getText().toString()));
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_TOTAL_TIME, Integer.parseInt(mTotalTime.getText().toString()));
 
-        if (mFirstImageDir !=null) mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1, mFirstImageDir);
-        if (mSecondImageDir != null) mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_2, mSecondImageDir);
-        if (mThirdImageDir != null) mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_3, mThirdImageDir);
-        if (mForthImageDir != null) mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_4, mForthImageDir);
+        if (mFirstImageDir != null)
+            mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1, mFirstImageDir);
+        if (mSecondImageDir != null)
+            mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_2, mSecondImageDir);
+        if (mThirdImageDir != null)
+            mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_3, mThirdImageDir);
+        if (mForthImageDir != null)
+            mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_4, mForthImageDir);
 
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_INGREDIENTS, mAllIngredientsString);
         mCv.put(BestRecipeContract.BestRecipeEntry.COLUMN_INGREDIENTS_AMOUNT, mAllAmountsString);
@@ -298,9 +302,9 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
         InsertToDatbaseLoader insertToDatbase = new InsertToDatbaseLoader();
         insertToDatbase.execute();
 
-        if (mUri!=null){
-            Toast.makeText(getBaseContext(),mUri.toString(),Toast.LENGTH_LONG).show();
-            Log.e(TAG,"Servings saved as : " + mServings.getText().toString());
+        if (mUri != null) {
+            Toast.makeText(getBaseContext(), mUri.toString(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, "Servings saved as : " + mServings.getText().toString());
         }
     }
 
@@ -308,25 +312,26 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
 
         @Override
         protected Uri doInBackground(Void... voids) {
-            Uri uri = getContentResolver().insert(BestRecipeContract.BestRecipeEntry.CONTENT_URI,mCv);
+            Uri uri = getContentResolver().insert(BestRecipeContract.BestRecipeEntry.CONTENT_URI, mCv);
             return uri;
         }
+
         @Override
         protected void onPostExecute(Uri uri) {
             mUri = uri;
         }
     }
 
-// get all the input fields for Ingredient and add them to the proper Array
-    private void listAllIngredientsAddView(){
+    // get all the input fields for Ingredient and add them to the proper Array
+    private void listAllIngredientsAddView() {
         int childCount = ingredientContainer.getChildCount();
-        for(int i=0; i<childCount; i++){
+        for (int i = 0; i < childCount; i++) {
             View thisChild = ingredientContainer.getChildAt(i);
-            EditText childEditTextIngredient = (EditText) thisChild.findViewById(R.id.ingredient_et);
+            EditText childEditTextIngredient = thisChild.findViewById(R.id.ingredient_et);
             String childTextIngredientViewValue = childEditTextIngredient.getText().toString().trim();
-            EditText childEditTextIngredientAmount = (EditText) thisChild.findViewById(R.id.ingredient_amount_et);
+            EditText childEditTextIngredientAmount = thisChild.findViewById(R.id.ingredient_amount_et);
             String childTextIngredinetAmountValue = childEditTextIngredientAmount.getText().toString().trim();
-            Spinner childSpinnerScale = (Spinner)thisChild.findViewById(R.id.scales_spinner);
+            Spinner childSpinnerScale = thisChild.findViewById(R.id.scales_spinner);
             String childSpinnerScaleValue = childSpinnerScale.getSelectedItem().toString();
             mIngredientArray.add(childTextIngredientViewValue);
             mIngredientAmountArray.add(childTextIngredinetAmountValue);
@@ -335,11 +340,11 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
     }
 
     //get the input Steps and  add them to mStepArray
-    private void listAllStepsAddView(){
+    private void listAllStepsAddView() {
         int childCount = stepsContainer.getChildCount();
-        for(int i=0; i<childCount; i++){
+        for (int i = 0; i < childCount; i++) {
             View thisChild = stepsContainer.getChildAt(i);
-            EditText childEditTextSteps = (EditText) thisChild.findViewById(R.id.step_et);
+            EditText childEditTextSteps = thisChild.findViewById(R.id.step_et);
             String childTextViewStepsValue = childEditTextSteps.getText().toString().trim();
             mStepsArray.add(childTextViewStepsValue);
         }
@@ -351,7 +356,7 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
                 mCookingTime.getText().length() != 0 || mYeildTime.getText().length() != 0 ||
                 mServings.getText().length() != 0 || mTotalTime.getText().length() != 0
                 || mFirstImageDir != null || mSecondImageDir != null || mThirdImageDir != null
-                || mForthImageDir != null ) {
+                || mForthImageDir != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setMessage(getString(R.string.return_from_add_new_recipe));
@@ -371,10 +376,54 @@ public class AddNewRecipeActivity extends AppCompatActivity  {
             });
             AlertDialog alert = builder.create();
             alert.show();
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        saveImagesOnRotation(outState,mFirstImageDir,mSecondImageDir,mThirdImageDir,mForthImageDir);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        retriveImagesOnRotation(savedInstanceState);
+    }
+
+    public void saveImagesOnRotation(Bundle outState, String firstImageDir,String secondImageDir
+            ,String thirdImageDir,String forthImageDir){
+        if(firstImageDir!=null){
+            outState.putString("first",firstImageDir);
+        }
+        if(secondImageDir!=null){
+            outState.putString("second",secondImageDir);
+        }
+        if(thirdImageDir!=null){
+            outState.putString("third",thirdImageDir);
+        }
+        if(forthImageDir!=null){
+            outState.putString("forth",forthImageDir);
+        }
+    }
+    public void retriveImagesOnRotation(Bundle savedInstanceState){
+        if(savedInstanceState.getString("first")!= null){
+            mFirstImageDir = savedInstanceState.getString("first");
+            Picasso.with(this).load(new File(mFirstImageDir)).fit().into(mFirstImage);
+        }
+        if(savedInstanceState.getString("second")!= null){
+            mSecondImageDir = savedInstanceState.getString("first");
+            Picasso.with(this).load(new File(mSecondImageDir)).fit().into(mSecondImage);
+        }
+        if(savedInstanceState.getString("third")!= null){
+            mThirdImageDir = savedInstanceState.getString("first");
+            Picasso.with(this).load(new File(mThirdImageDir)).fit().into(mThirdImage);
+        }
+        if(savedInstanceState.getString("forth")!= null){
+            mForthImageDir = savedInstanceState.getString("first");
+            Picasso.with(this).load(new File(mForthImageDir)).fit().into(mForthImage);
+        }
+    }
 }

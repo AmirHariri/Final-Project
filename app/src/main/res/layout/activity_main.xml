@@ -74,8 +74,8 @@
             android:layout_marginBottom="@dimen/fab_bottom_margin"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
-            android:contentDescription="@string/action_add"
             android:src="@drawable/ic_add_circle_outline_black_24dp"
+            android:contentDescription="@string/fab_description"
             app:elevation="@dimen/fab_elevation_resting"
             app:pressedTranslationZ="@dimen/fab_press_translation_z" />
 

@@ -40,7 +40,7 @@ public class IngredientAdapter extends ArrayAdapter<BestRecipe.Ingredients> {
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.mIngredientTextView = listItemView.findViewById(R.id.ingredient_tv_toshow);
             viewHolder.mAmountTextView = listItemView.findViewById(R.id.amount_tv_toshow);
-            viewHolder.mScaleTextView =listItemView.findViewById(R.id.scale_tv_toshow);
+            viewHolder.mScaleTextView = listItemView.findViewById(R.id.scale_tv_toshow);
 
             viewHolder.mIngredientTextView.setText(mIngredientsObject.get(position).getIngredients());
             viewHolder.mAmountTextView.setText(mIngredientsObject.get(position).getAmounts());
@@ -51,8 +51,7 @@ public class IngredientAdapter extends ArrayAdapter<BestRecipe.Ingredients> {
     }
 
 
-
-     private static class ViewHolder{
+    private static class ViewHolder {
         TextView mIngredientTextView;
         TextView mAmountTextView;
         TextView mScaleTextView;

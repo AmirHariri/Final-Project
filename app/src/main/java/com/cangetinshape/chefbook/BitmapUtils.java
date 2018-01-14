@@ -27,6 +27,7 @@ import java.util.Locale;
 
 class BitmapUtils {
     private static final String FILE_PROVIDER_AUTHORITY = "com.cangetinshape.chefbook.fileprovider";
+
     /**
      * Resamples the captured photo to fit the screen for better memory usage.
      *
@@ -34,7 +35,7 @@ class BitmapUtils {
      * @param imagePath The path of the photo to be resampled.
      * @return The resampled bitmap
      */
-    static Bitmap resamplePic(Context context, String imagePath)  {
+    static Bitmap resamplePic(Context context, String imagePath) {
 
         // Get device screen size information
         DisplayMetrics metrics = new DisplayMetrics();
@@ -190,8 +191,6 @@ class BitmapUtils {
     /**
      * Helper Method to convert byte[] to image
      *
-     *
-     *
      * @param image the biteArray to be converted to Bitmap
      * @return
      */
@@ -204,10 +203,9 @@ class BitmapUtils {
      * Gets the picture for the specified report in the database.
      *
      * @param picturePath the to get the picture.
-     *
      * @return the picture for the report, or null if no picture was found.
      */
-    public static Bitmap getPictureFromPath(String  picturePath) {
+    public static Bitmap getPictureFromPath(String picturePath) {
         if (picturePath == null || picturePath.length() == 0)
             return (null);
 

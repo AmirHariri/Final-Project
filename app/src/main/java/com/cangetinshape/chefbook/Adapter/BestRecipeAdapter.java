@@ -28,12 +28,13 @@ public class BestRecipeAdapter extends RecyclerView.Adapter<BestRecipeAdapter.Be
 
     public BestRecipeAdapter(Context context) {
         //this.mCursor = cursor;
-        this.mContext =context;
+        this.mContext = context;
     }
 
     public interface OnItemClickListener {
         void onItemClick(View itemView, int position);
     }
+
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
@@ -51,48 +52,48 @@ public class BestRecipeAdapter extends RecyclerView.Adapter<BestRecipeAdapter.Be
     @Override
     public void onBindViewHolder(BestRecipeViewolder holder, int position) {
 
-            mCursor.moveToPosition(position);
-            int idIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry._ID);
-            int titleIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE);
-            int categoryIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_CATEGORY);
-            int servingsIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_SERVINGS);
-            int totalTimeIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_TOTAL_TIME);
+        mCursor.moveToPosition(position);
+        int idIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry._ID);
+        int titleIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE);
+        int categoryIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_CATEGORY);
+        int servingsIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_SERVINGS);
+        int totalTimeIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_TOTAL_TIME);
 
-            int firstImageIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1);
+        int firstImageIndex = mCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1);
 
-            int id = mCursor.getInt(idIndex);
-            String recipeTitle = mCursor.getString(titleIndex);
-            String recipeCategory = mCursor.getString(categoryIndex);
-            int recipeServings = mCursor.getInt(servingsIndex);
-            int recipeTotalTime = mCursor.getInt(totalTimeIndex);
+        int id = mCursor.getInt(idIndex);
+        String recipeTitle = mCursor.getString(titleIndex);
+        String recipeCategory = mCursor.getString(categoryIndex);
+        int recipeServings = mCursor.getInt(servingsIndex);
+        int recipeTotalTime = mCursor.getInt(totalTimeIndex);
 
-            if (firstImageIndex>0) {
-                String firstImagePath = mCursor.getString(firstImageIndex);
-                if (firstImagePath != null )Picasso.with(this.mContext).load(new File(firstImagePath))
-                        .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListImageView);
-            }
+        if (firstImageIndex > 0) {
+            String firstImagePath = mCursor.getString(firstImageIndex);
+            if (firstImagePath != null) Picasso.with(this.mContext).load(new File(firstImagePath))
+                    .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListImageView);
+        }
 
-            holder.mListTitleTextView.setText(recipeTitle);
-            holder.mListCategoryTextView.setText(recipeCategory);
-            String servingsString = "Servings: " + String.valueOf(recipeServings);
-            holder.mListServingsTextView.setText(servingsString);
-            String totalTimeString = "Total Time: " + String.valueOf(recipeTotalTime);
-            holder.mSListTotalTimeTextView.setText(totalTimeString);
+        holder.mListTitleTextView.setText(recipeTitle);
+        holder.mListCategoryTextView.setText(recipeCategory);
+        String servingsString = mContext.getString(R.string.servings_txt) + String.valueOf(recipeServings);
+        holder.mListServingsTextView.setText(servingsString);
+        String totalTimeString = mContext.getString(R.string.total_time_tv) + String.valueOf(recipeTotalTime);
+        holder.mSListTotalTimeTextView.setText(totalTimeString);
     }
 
     @Override
     public int getItemCount() {
-        if (null == mCursor){
+        if (null == mCursor) {
             return 0;
         }
         return mCursor.getCount();
     }
 
 
-    public class BestRecipeViewolder extends RecyclerView.ViewHolder{
+    public class BestRecipeViewolder extends RecyclerView.ViewHolder {
         ImageView mListImageView;
         TextView mListTitleTextView, mListServingsTextView, mListCategoryTextView,
-                 mSListTotalTimeTextView;
+                mSListTotalTimeTextView;
 
         public BestRecipeViewolder(final View itemView) {
             super(itemView);

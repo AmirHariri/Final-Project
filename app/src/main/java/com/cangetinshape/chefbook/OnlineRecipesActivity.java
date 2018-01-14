@@ -44,7 +44,7 @@ public class OnlineRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_recipes);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.od_toolbar);
+        Toolbar myToolbar = findViewById(R.id.od_toolbar);
         setSupportActionBar(myToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -61,29 +61,30 @@ public class OnlineRecipesActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRecipeDatabaseReference = mFirebaseDatabase.getReference("recipes");
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.od_recycler_view);
+        mRecyclerView = findViewById(R.id.od_recycler_view);
         mLayoutManager = new GridLayoutManager(mContext,
                 MainActivity.returnGridViewColumnBaseOnScreenSize(OnlineRecipesActivity.this));
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecipeDatabaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()) {
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            BestRecipe onlineRecipe = (BestRecipe) postSnapshot.getValue(BestRecipe.class);
-                            mOnlineRecipes.add(onlineRecipe);
-                        }
-                        mOnlineRecipeAdapter = new OnlineRecipeAdapter(mContext, mOnlineRecipes);
-                        mRecyclerView.setAdapter(mOnlineRecipeAdapter);
-                        mRecyclerView.setHasFixedSize(true);
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        BestRecipe onlineRecipe = postSnapshot.getValue(BestRecipe.class);
+                        mOnlineRecipes.add(onlineRecipe);
                     }
+                    mOnlineRecipeAdapter = new OnlineRecipeAdapter(mContext, mOnlineRecipes);
+                    mRecyclerView.setAdapter(mOnlineRecipeAdapter);
+                    mRecyclerView.setHasFixedSize(true);
                 }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    System.out.println("The read failed: " + databaseError.getCode());
-                }
-            });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
     }
 
     @Override
@@ -103,10 +104,9 @@ public class OnlineRecipesActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle state) {
         super.onRestoreInstanceState(state);
         // Retrieve list state and list/item positions
-        if(state != null) {
+        if (state != null) {
             mListState = state.getParcelable(LIST_STATE_KEY);
         }
     }
-
 
 }

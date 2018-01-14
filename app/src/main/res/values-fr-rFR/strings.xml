@@ -59,6 +59,20 @@
     <string name="dialog_delet_text">Voulez-vous supprimer la recette actuelle?</string>
     <string name="cancel_text">Annuler</string>
     <string name="delete_text">Effacer</string>
-    Parcourir les recettes partagées de ChefBook
+
+
+    <string name="share_invitation_text">S\'il vous plaît, téléchargez ChefBook pour partager nos recettes, de https://play.google.com/store/apps </string>
+    <string name="deletion_confirm_text">Vous avez supprimé le</string>
+    <string name="failed_to_load_data">Impossible de charger les données de manière asynchrone.</string>
+    <string name="saving_to_database_alert_text">Votre recette a été enregistrée dans la base de données ChefBook!</string>
+    <string name="saving_to_database_with_noimage">Votre recette sans image a été enregistrée dans la base de données ChefBook!</string>
+    <string name="complete_all_the_input_fields_alert">S\'il vous plaît assurez-vous que toutes les informations requises sont complètes.</string>
+    <string name="signed_in_text">Signé!</string>
+    <string name="sign_in_cancel_text">Connexion annulée!</string>
+    <string name="sign_in_now_text">Connectez vous maintenant!</string>
+    <string name="welcome_text">Bienvenue sur ChefBook!</string>
+    <string name="thanks_for_visit_add">Merci d\'avoir vérifié la publicité!</string>
+    <string name="fab_description">Ajouter une nouvelle recette</string>
+    <string name="recipe_toast_text">recette!</string>
 
 </resources>

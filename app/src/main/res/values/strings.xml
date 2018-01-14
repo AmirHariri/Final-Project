@@ -60,4 +60,18 @@
     <string name="chefbook">ChefBook</string>
     <string name="recipe_image">image provided</string>
 
+    <string name="share_invitation_text">Please, download ChefBook to share our recipes, from here https://play.google.com/store/apps </string>
+    <string name="deletion_confirm_text">You have deleted the</string>
+    <string name="failed_to_load_data">Failed to asynchronously load data.</string>
+    <string name="saving_to_database_alert_text">Your recipe has saved to the ChefBook DataBase!</string>
+    <string name="saving_to_database_with_noimage">Your recipe with no Image has saved to the ChefBook DataBase!</string>
+    <string name="complete_all_the_input_fields_alert">Please make sure all the requiered information are complete.</string>
+    <string name="signed_in_text">Signed in!</string>
+    <string name="sign_in_cancel_text">Sign in Canceled!</string>
+    <string name="sign_in_now_text">Sign n now!</string>
+    <string name="welcome_text">WelCome to ChefBook!</string>
+    <string name="thanks_for_visit_add">Thanks for checking the ad!</string>
+    <string name="fab_description">Add new recipe</string>
+    <string name="recipe_toast_text">recipe!</string>
+
 </resources>

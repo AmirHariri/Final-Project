@@ -30,18 +30,18 @@ public class ToastAdListener extends AdListener {
 
     @Override
     public void onAdClosed() {
-        Toast.makeText(mContext, "WelCome to ChefBook!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mContext.getString(R.string.welcome_text), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAdLeftApplication() {
-        Toast.makeText(mContext, "Thanks for checking the ad!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mContext.getString(R.string.thanks_for_visit_add), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAdFailedToLoad(int errorCode) {
         mErrorReason = "";
-        switch(errorCode) {
+        switch (errorCode) {
             case AdRequest.ERROR_CODE_INTERNAL_ERROR:
                 mErrorReason = "Internal error";
                 break;

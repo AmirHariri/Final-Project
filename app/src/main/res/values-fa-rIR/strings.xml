@@ -59,4 +59,21 @@
     <string name="chefbook">ChefBook</string>
     <string name="recipe_image">تصویر ارائه شده است</string>
     <string name="action_browse_chefbook_database">جستجو دردستور غذاهای به اشتراک گذاشته شده </string>
+
+    <string name="share_invitation_text">   با استفاده از شف بوک (Chefbook ) شما میتوانید دستورغذاهای مورد علاقه خود را ذخیره کنید ویا به اشتراک گذارید؛ شما همچنین میتوانید با ورود به به شبکه و ثبت نام کاربری از پایگاه داده های شف بوک استفاده کنید وازدستور غذاهای به اشتراک گذاری شده لذت ببرید.شما می توانید اپلیکیشن شف بوک را از  اینجا نصب کنید :  https://play.google.com/store/apps</string>
+    <string name="deletion_confirm_text">شما دستور </string>
+    <string name="failed_to_load_data">داده ها بارگیری نشدند!</string>
+    <string name="saving_to_database_alert_text">دستورغذای شما درپایگاه داده های شف بوک ذخیره شد!</string>
+    <string name="saving_to_database_with_noimage">دستورغذای شما بدون هیچ تصویری درپایگاه داده های شف بوک ذخیره شد!</string>
+    <string name="complete_all_the_input_fields_alert">لطفا اطمینان حاصل کنید که تمام اطلاعات مورد نیاز وارد شده است.</string>
+    <string name="signed_in_text">ورود!</string>
+    <string name="sign_in_cancel_text">ورود به سیستم لغو شد!</string>
+    <string name="sign_in_now_text">ورود!</string>
+    <string name="welcome_text">به اپلیکیشین شف بوک خوش آمدید!</string>
+    <string name="thanks_for_visit_add">برای بازدید از تبلیغات متشکریم!</string>
+    <string name="fab_description">اضافه کردن دستور جدید</string>
+    <string name="recipe_toast_text">حذف کرده اید!</string>
+
+
+
 </resources>

@@ -46,14 +46,15 @@ public class MainActivity extends AppCompatActivity
     // Constants for logging and referring to a unique loader
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RECIPE_LOADER_ID = 0;
-    public static final int RC_SIGN_IN = 1 ;
+    public static final int RC_SIGN_IN = 1;
     private static final String CURRENT_POSITION = "position";
+    private static final String FIRST_RUN = "firstrun";
 
     // Member variables for the adapter and RecyclerView
     RecyclerView mRecyclerView;
     BestRecipeAdapter bestRecipeAdapter;
     static int TABLET_COLUMN = 2;
-    static int SMART_PONE_CULOMN =1;
+    static int SMART_PONE_CULOMN = 1;
     private Cursor mRecipeCursor;
     BestRecipe mRecipeForWidget;
     private int mPosition;
@@ -74,14 +75,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         mUserNameTV = findViewById(R.id.user_name__tv);
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
         //ab.setTitle("MyList");
 
-        mAdView = (AdView) findViewById(R.id.ad_view);
+        mAdView = findViewById(R.id.ad_view);
         mAdView.setAdListener(new ToastAdListener(this));
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -89,12 +90,11 @@ public class MainActivity extends AppCompatActivity
         mFirebaseAuth = FirebaseAuth.getInstance();
 
 
-
-        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
         bestRecipeAdapter = new BestRecipeAdapter(this);
         mRecyclerView.setAdapter(bestRecipeAdapter);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this,returnGridViewColumnBaseOnScreenSize(this)));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, returnGridViewColumnBaseOnScreenSize(this)));
 
         bestRecipeAdapter.setOnItemClickListener(new BestRecipeAdapter.OnItemClickListener() {
             @Override
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
                 int cookingTimeId = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_COOKING_TIME);
                 int cookingTime = mRecipeCursor.getInt(cookingTimeId);
                 int yeildTimeId = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_YEILD_TIME);
-                int yeildTime =mRecipeCursor.getInt(yeildTimeId);
+                int yeildTime = mRecipeCursor.getInt(yeildTimeId);
                 int totalTimeId = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_TOTAL_TIME);
                 int totalTime = mRecipeCursor.getInt(totalTimeId);
 
@@ -136,27 +136,27 @@ public class MainActivity extends AppCompatActivity
                 String image3Dir = mRecipeCursor.getString(image3Id);
                 int image4Id = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_4);
                 String image4Dir = mRecipeCursor.getString(image4Id);
-                ArrayList<String> imagesDir= new ArrayList<>();
+                ArrayList<String> imagesDir = new ArrayList<>();
                 if (image1Dir != null) imagesDir.add(image1Dir);
                 if (image2Dir != null) imagesDir.add(image2Dir);
                 if (image3Dir != null) imagesDir.add(image3Dir);
                 if (image4Dir != null) imagesDir.add(image4Dir);
 
                 //initialize bestRecipe object
-                BestRecipe bestRecipe = new BestRecipe(title, category,servings, prepTime, cookingTime,
-                         yeildTime, totalTime, ingredients, amounts, scales, steps, imagesDir, mUserName, mUserID);
+                BestRecipe bestRecipe = new BestRecipe(title, category, servings, prepTime, cookingTime,
+                        yeildTime, totalTime, ingredients, amounts, scales, steps, imagesDir, mUserName, mUserID);
                 mRecipeForWidget = bestRecipe;
 
                 Intent detaileRecepieActivityIntent = new Intent(itemView.getContext(), DetailRecipeActivity.class);
                 detaileRecepieActivityIntent.putExtra("RECEPIE_ID", recipeId);
-                detaileRecepieActivityIntent.putExtra("BEST_RECIPE",bestRecipe);
+                detaileRecepieActivityIntent.putExtra("BEST_RECIPE", bestRecipe);
                 startActivity(detaileRecepieActivityIntent);
             }
         });
         if (savedInstanceState != null && savedInstanceState.containsKey(CURRENT_POSITION)) {
             mPosition = savedInstanceState.getInt(CURRENT_POSITION);
         }
-        FloatingActionButton addFAB = (FloatingActionButton) findViewById(R.id.add_fab);
+        FloatingActionButton addFAB = findViewById(R.id.add_fab);
         addFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,25 +172,24 @@ public class MainActivity extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 mUser = user;
-                if(user!=null){
+                if (user != null) {
                     //user is signed in
                     onSignedInInitialize(user.getDisplayName());
                     mUserID = user.getUid();
                     //Toast.makeText(MainActivity.this, "You are now signed in, Wellcome to ChefBook!",Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     //user is signed out
                     onSignedOutCleanUp();
 
                     SharedPreferences signInPreference = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    boolean isFirstRun = signInPreference.getBoolean("FIRSTRUN", true);
-                    if (isFirstRun)
-                    {
+                    boolean isFirstRun = signInPreference.getBoolean(FIRST_RUN, true);
+                    if (isFirstRun) {
                         // Code to run once
                         AlertDialog signInAlert = confirmSignIn();
                         signInAlert.show();
 
                         SharedPreferences.Editor editor = signInPreference.edit();
-                        editor.putBoolean("FIRSTRUN", false);
+                        editor.putBoolean(FIRST_RUN, false);
                         editor.commit();
                     }
                 }
@@ -201,11 +200,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGN_IN){
-            if(resultCode == RESULT_OK){
-                Toast.makeText(this, "Signed in!",Toast.LENGTH_SHORT).show();
-            }else if(resultCode == RESULT_CANCELED){
-                Toast.makeText(this, "Sign in Canceled!", Toast.LENGTH_SHORT).show();
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, getString(R.string.signed_in_text), Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, getString(R.string.sign_in_cancel_text), Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -218,6 +217,7 @@ public class MainActivity extends AppCompatActivity
         return new AsyncTaskLoader<Cursor>(this) {
             // Initialize a Cursor, this will hold all the recipe data
             Cursor mRecipeData = null;
+
             // onStartLoading() is called when a loader first starts loading data
             @Override
             protected void onStartLoading() {
@@ -239,11 +239,12 @@ public class MainActivity extends AppCompatActivity
                             null,
                             BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE);
                 } catch (Exception e) {
-                    Log.e(TAG, "Failed to asynchronously load data.");
+                    Log.e(TAG, getString(R.string.failed_to_load_data));
                     e.printStackTrace();
                     return null;
                 }
             }
+
             public void deliverResult(Cursor data) {
                 mRecipeData = data;
                 super.deliverResult(data);
@@ -282,7 +283,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        if(mAuthStateListener !=null) {
+        if (mAuthStateListener != null) {
             mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         }
     }
@@ -303,7 +304,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem signInItem = menu.findItem(R.id.action_sign_in);
         MenuItem signOutItem = menu.findItem(R.id.action_sign_out);
         MenuItem browseOnline = menu.findItem(R.id.action_online_recipes);
-        if(mUser!=null) {
+        if (mUser != null) {
             signOutItem.setEnabled(true);
             signOutItem.setVisible(true);
             signInItem.setEnabled(false);
@@ -311,7 +312,7 @@ public class MainActivity extends AppCompatActivity
             browseOnline.setEnabled(true);
             browseOnline.setVisible(true);
             return true;
-        }else{
+        } else {
             signInItem.setEnabled(true);
             signInItem.setVisible(true);
             signOutItem.setEnabled(false);
@@ -330,14 +331,14 @@ public class MainActivity extends AppCompatActivity
             //startActivity(settingsIntent);
             return true;
         }
-        if (id== R.id.action_sign_out){
+        if (id == R.id.action_sign_out) {
             AuthUI.getInstance().signOut(this);
             onSignedOutCleanUp();
             setUserDisplayName();
             this.invalidateOptionsMenu();
             return true;
         }
-        if(id== R.id.action_sign_in){
+        if (id == R.id.action_sign_in) {
             onSignedOutCleanUp();
             startActivityForResult(
                     AuthUI.getInstance()
@@ -351,7 +352,7 @@ public class MainActivity extends AppCompatActivity
             this.invalidateOptionsMenu();
             return true;
         }
-        if (id == R.id.action_online_recipes){
+        if (id == R.id.action_online_recipes) {
             Intent sharedOnlineIntent = new Intent(this, OnlineRecipesActivity.class);
             startActivity(sharedOnlineIntent);
         }
@@ -360,7 +361,7 @@ public class MainActivity extends AppCompatActivity
 
     public void sendDataToWidget() {
 
-        if (mRecipeCursor!= null && !mRecipeCursor.isClosed()) {
+        if (mRecipeCursor != null && !mRecipeCursor.isClosed()) {
             final int firstImageIndex = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1);
             final int recipeTitleIndex = mRecipeCursor.getColumnIndex(BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE);
             ArrayList<String> imageArrays = new ArrayList<>();
@@ -391,14 +392,16 @@ public class MainActivity extends AppCompatActivity
         mUserName = displayName;
         setUserDisplayName();
     }
+
     private void onSignedOutCleanUp() {
 
         mUserName = "";
     }
-    private void setUserDisplayName(){
+
+    private void setUserDisplayName() {
         String displayNametxt;
-        if(mUserName.equals("")) displayNametxt = mUserName;
-        else displayNametxt = getString(R.string.sign_in_as) + mUserName ;
+        if (mUserName.equals("")) displayNametxt = mUserName;
+        else displayNametxt = getString(R.string.sign_in_as) + mUserName;
         mUserNameTV.setText(displayNametxt);
     }
 
@@ -406,8 +409,8 @@ public class MainActivity extends AppCompatActivity
     private AlertDialog confirmSignIn() {
         return (new AlertDialog.Builder(this)
                 //set message, title, and icon
-                .setTitle("Sign in")
-                .setMessage("Sign in now?")
+                .setTitle(getString(R.string.sign_in_text))
+                .setMessage(getString(R.string.sign_in_now_text))
                 //.setIcon(R.drawable.ic_delete_forever_black_24dp)
                 .setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -434,19 +437,20 @@ public class MainActivity extends AppCompatActivity
     }
 
     //helper method to check for the device screen size
-    public static int returnGridViewColumnBaseOnScreenSize(Activity activity){
+    public static int returnGridViewColumnBaseOnScreenSize(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        float yInches= metrics.heightPixels/metrics.ydpi;
-        float xInches= metrics.widthPixels/metrics.xdpi;
-        double diagonalInches = Math.sqrt(xInches*xInches + yInches*yInches);
-        if (diagonalInches>=6.5){
+        float yInches = metrics.heightPixels / metrics.ydpi;
+        float xInches = metrics.widthPixels / metrics.xdpi;
+        double diagonalInches = Math.sqrt(xInches * xInches + yInches * yInches);
+        if (diagonalInches >= 6.5) {
             return TABLET_COLUMN;
-        }else{
+        } else {
             return SMART_PONE_CULOMN;
         }
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mPosition != RecyclerView.NO_POSITION) {
