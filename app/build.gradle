@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'MyUdacity'
-            keyPassword 'password'
-            storeFile file('$rootDir/keystore.jks')
-            storePassword 'password'
+            keyAlias 'key2'
+            keyPassword 'keyPassword'
+            storeFile file("$rootDir/keystore.jks")
+            storePassword 'storeKeyPassword'
         }
     }
     compileSdkVersion 27
@@ -17,6 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -24,6 +25,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
     }
 }
 

@@ -1,6 +1,7 @@
 package com.cangetinshape.chefbook;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,14 +13,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,7 +55,15 @@ public class AddNewRecipeActivity extends AppCompatActivity {
     LinearLayout stepsContainer;
     LinearLayout ingredientContainer;
     private Button mAddIngredient;
+    TextView ingredientHint;
+    TextView stepsHint;
     private int mId;
+
+    //instances for saveInstanceState
+    private String[] ingredientArray;
+    String[] ingredientAmountArray;
+    String[] ingredientScaleArray;
+    String[] allStepArray;
 
     private EditText mRecipeTitle, mServings, mPrepTime, mCookingTime, mYeildTime, mTotalTime;
     private Spinner mCategory;
@@ -97,8 +107,8 @@ public class AddNewRecipeActivity extends AppCompatActivity {
         mCookingTime = findViewById(R.id.cook_time_et);
         mTotalTime = findViewById(R.id.total_time_et);
 
-        final TextView ingredientHint = findViewById(R.id.hint_ingredient_tv);
-        final TextView stepsHint = findViewById(R.id.hint_steps_tv);
+        ingredientHint = findViewById(R.id.hint_ingredient_tv);
+        stepsHint = findViewById(R.id.hint_steps_tv);
 
         // to add more ingeredient if needed
         ingredientContainer = findViewById(R.id.ingredient_container);
@@ -195,7 +205,7 @@ public class AddNewRecipeActivity extends AppCompatActivity {
             File photoFile = null;
             try {
                 photoFile = BitmapUtils.createTempImageFile(this);
-                Log.i(TAG, "the photoFile path is:  " + photoFile.toString());
+                //Log.i(TAG, "the photoFile path is:  " + photoFile.toString());
             } catch (IOException ex) {
                 // Error occurred while creating the File
                 ex.printStackTrace();
@@ -204,7 +214,7 @@ public class AddNewRecipeActivity extends AppCompatActivity {
             if (photoFile != null) {
                 // Get the path of the temporary file
                 mTempPhotoPath = photoFile.getAbsolutePath();
-                Log.i(TAG, "the absolute path is : " + mTempPhotoPath);
+                //Log.i(TAG, "the absolute path is : " + mTempPhotoPath);
 
                 // Get the content URI for the image file
                 Uri photoURI = FileProvider.getUriForFile(this,
@@ -308,12 +318,12 @@ public class AddNewRecipeActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class InsertToDatbaseLoader extends AsyncTask<Void, Void, Uri> {
 
         @Override
         protected Uri doInBackground(Void... voids) {
-            Uri uri = getContentResolver().insert(BestRecipeContract.BestRecipeEntry.CONTENT_URI, mCv);
-            return uri;
+            return getContentResolver().insert(BestRecipeContract.BestRecipeEntry.CONTENT_URI, mCv);
         }
 
         @Override
@@ -384,46 +394,181 @@ public class AddNewRecipeActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        saveImagesOnRotation(outState,mFirstImageDir,mSecondImageDir,mThirdImageDir,mForthImageDir);
+        saveImagesOnRotation(outState, mFirstImageDir, mSecondImageDir, mThirdImageDir, mForthImageDir);
+        saveEditTextFields(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         retriveImagesOnRotation(savedInstanceState);
+        retriveEditTextFileds(savedInstanceState);
     }
 
-    public void saveImagesOnRotation(Bundle outState, String firstImageDir,String secondImageDir
-            ,String thirdImageDir,String forthImageDir){
-        if(firstImageDir!=null){
-            outState.putString("first",firstImageDir);
+    public void saveImagesOnRotation(Bundle outState, String firstImageDir, String secondImageDir
+            , String thirdImageDir, String forthImageDir) {
+        if (firstImageDir != null) {
+            outState.putString("first", firstImageDir);
         }
-        if(secondImageDir!=null){
-            outState.putString("second",secondImageDir);
+        if (secondImageDir != null) {
+            outState.putString("second", secondImageDir);
         }
-        if(thirdImageDir!=null){
-            outState.putString("third",thirdImageDir);
+        if (thirdImageDir != null) {
+            outState.putString("third", thirdImageDir);
         }
-        if(forthImageDir!=null){
-            outState.putString("forth",forthImageDir);
+        if (forthImageDir != null) {
+            outState.putString("forth", forthImageDir);
         }
     }
-    public void retriveImagesOnRotation(Bundle savedInstanceState){
-        if(savedInstanceState.getString("first")!= null){
+
+    public void retriveImagesOnRotation(Bundle savedInstanceState) {
+        if (savedInstanceState.getString("first") != null) {
             mFirstImageDir = savedInstanceState.getString("first");
             Picasso.with(this).load(new File(mFirstImageDir)).fit().into(mFirstImage);
         }
-        if(savedInstanceState.getString("second")!= null){
+        if (savedInstanceState.getString("second") != null) {
             mSecondImageDir = savedInstanceState.getString("first");
             Picasso.with(this).load(new File(mSecondImageDir)).fit().into(mSecondImage);
         }
-        if(savedInstanceState.getString("third")!= null){
+        if (savedInstanceState.getString("third") != null) {
             mThirdImageDir = savedInstanceState.getString("first");
             Picasso.with(this).load(new File(mThirdImageDir)).fit().into(mThirdImage);
         }
-        if(savedInstanceState.getString("forth")!= null){
+        if (savedInstanceState.getString("forth") != null) {
             mForthImageDir = savedInstanceState.getString("first");
             Picasso.with(this).load(new File(mForthImageDir)).fit().into(mForthImage);
         }
     }
+
+    public void saveEditTextFields(Bundle outState) {
+        if (ingredientContainer.getChildCount() > 0) {
+            listAllIngredientsAddView();
+            String allIngredient = StringUtils.convertArrayListToString(mIngredientArray);
+            outState.putString("ingredients", allIngredient);
+            String allIngredientAmount = StringUtils.convertArrayListToString(mIngredientAmountArray);
+            outState.putString("amounts", allIngredientAmount);
+            String allScaleAmount = StringUtils.convertArrayListToString(mScaleArray);
+            outState.putString("scales", allScaleAmount);
+        }
+        if (stepsContainer.getChildCount() > 0) {
+            listAllStepsAddView();
+            String allSteps = StringUtils.convertArrayListToString(mStepsArray);
+            outState.putString("steps", allSteps);
+        }
+    }
+
+    public void retriveEditTextFileds(Bundle savedInstanceState) {
+
+        String allIngredient = savedInstanceState.getString("ingredients");
+        if (allIngredient != null) {
+            ingredientArray = StringUtils.convertStringToArray(allIngredient);
+        }
+        String allIngredientAmount = savedInstanceState.getString("amounts");
+        if (allIngredientAmount != null) {
+            ingredientAmountArray = StringUtils.convertStringToArray(allIngredientAmount);
+        }
+        String allScaleAmount = savedInstanceState.getString("scales");
+        if (allScaleAmount != null) {
+            ingredientScaleArray = StringUtils.convertStringToArray(allScaleAmount);
+        }
+        //get the maximum length of arrays
+        int maximumLength = maximumLengthStringArray(ingredientArray, ingredientAmountArray, ingredientScaleArray);
+        for (int i = 0; i < maximumLength; i++) {
+            LayoutInflater layoutInflater =
+                    (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View addIngredientView = layoutInflater.inflate(R.layout.ingredient_row, null);
+            Button buttonRemove = addIngredientView.findViewById(R.id.remove_ingredient);
+            final View.OnClickListener thisListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((LinearLayout) addIngredientView.getParent()).removeView(addIngredientView);
+                    //listAllIngredientsAddView();
+                }
+            };
+            buttonRemove.setOnClickListener(thisListener);
+            ingredientContainer.addView(addIngredientView);
+            View thisChild = ingredientContainer.getChildAt(i);
+            if (ingredientArray != null && ingredientArray.length > i) {
+                if (ingredientArray[i] != null) {
+                    EditText childEditTextIngredient = thisChild.findViewById(R.id.ingredient_et);
+                    childEditTextIngredient.setText(ingredientArray[i]);
+                }
+            }
+            if (ingredientAmountArray != null && ingredientAmountArray.length > i) {
+                if (ingredientAmountArray[i] != null) {
+                    EditText childEditTextIngredientAmount = thisChild.findViewById(R.id.ingredient_amount_et);
+                    childEditTextIngredientAmount.setText(ingredientAmountArray[i]);
+                }
+            }
+            if (ingredientScaleArray != null && ingredientScaleArray.length > i) {
+                if (ingredientScaleArray[i] != null) {
+                    Spinner childEditTextIngredientAmount = thisChild.findViewById(R.id.scales_spinner);
+
+                    String compareValue = ingredientScaleArray[i];
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.scales_array, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    childEditTextIngredientAmount.setAdapter(adapter);
+                    if (compareValue != null) {
+                        int spinnerPosition = adapter.getPosition(compareValue);
+                        childEditTextIngredientAmount.setSelection(spinnerPosition);
+                    }
+                }
+            }
+
+            ingredientHint.setVisibility(View.GONE);
+        }
+
+        String allSteps = savedInstanceState.getString("steps");
+        if (allSteps != null) {
+            allStepArray = StringUtils.convertStringToArray(allSteps);
+        }
+        int stepArrayLength = allStepArray != null ? allStepArray.length : 0;
+        for (int i = 0; i < stepArrayLength; i++) {
+            LayoutInflater layoutInflater =
+                    (LayoutInflater) getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View addView = layoutInflater.inflate(R.layout.step_row, null);
+            Button buttonRemove = addView.findViewById(R.id.remove_step);
+            final View.OnClickListener thisListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((LinearLayout) addView.getParent()).removeView(addView);
+
+                }
+            };
+            buttonRemove.setOnClickListener(thisListener);
+            stepsContainer.addView(addView);
+            View thisChild = stepsContainer.getChildAt(i);
+            EditText childEditTextSteps = thisChild.findViewById(R.id.step_et);
+            childEditTextSteps.setText(allStepArray[i]);
+
+            stepsHint.setVisibility(View.GONE);
+        }
+    }
+
+    //helper method to find the maximum length of 3 nullable string array
+    public int maximumLengthStringArray(String[] aStringArray, String[] bStringArray, String[] cStringArray) {
+
+        if (aStringArray != null) {
+            if (bStringArray != null) {
+                if (cStringArray != null) {
+                    return Math.max(Math.max(aStringArray.length, bStringArray.length)
+                            , Math.max(aStringArray.length, cStringArray.length));
+                } else {
+                    return Math.max(aStringArray.length, bStringArray.length);
+                }
+            } else {
+                return aStringArray.length;
+            }
+        } else if (bStringArray != null) {
+            if (cStringArray != null) {
+                return Math.max(bStringArray.length, cStringArray.length);
+            } else {
+                return bStringArray.length;
+            }
+        } else if (cStringArray != null) {
+            return cStringArray.length;
+        }
+        return 0;
+    }
+
 }

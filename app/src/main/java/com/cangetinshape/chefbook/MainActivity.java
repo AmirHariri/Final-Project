@@ -382,7 +382,7 @@ public class MainActivity extends AppCompatActivity
 
             editor.putString(BestRecipeContract.BestRecipeEntry.COLUMN_RECIPE_TITLE, titlesString).apply();
             editor.putString(BestRecipeContract.BestRecipeEntry.COLUMN_PICTURE_IMAGE_1, imagesString).apply();
-            Log.e(TAG, " the name that has passed in to widget is : " + titlesString + " And Image DIR is:" + imagesString);
+            //Log.e(TAG, titlesString  + imagesString);
             //refresh the widget after openning the app
             RecipeWidgetProvider.sendRefreshBroadcast(this);
         }
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity
                 .setTitle(getString(R.string.sign_in_text))
                 .setMessage(getString(R.string.sign_in_now_text))
                 //.setIcon(R.drawable.ic_delete_forever_black_24dp)
-                .setPositiveButton("Sign in", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.sign_in_text), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         startActivityForResult(
                                 AuthUI.getInstance()
@@ -428,7 +428,7 @@ public class MainActivity extends AppCompatActivity
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton("Later!", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.later_text), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }

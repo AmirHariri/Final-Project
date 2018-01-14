@@ -74,6 +74,9 @@
     <string name="fab_description">اضافه کردن دستور جدید</string>
     <string name="recipe_toast_text">حذف کرده اید!</string>
 
+    <string name="later_text">بعد!</string>
+    <string name="log_missing_information">اطلاعات وردی کامل نیست </string>
+
 
 
 </resources>

@@ -51,7 +51,7 @@ public class OnlineRecipeAdapter extends RecyclerView.Adapter<OnlineRecipeAdapte
 
     @Override
     public void onBindViewHolder(OnlineRecipeViewHolder holder, int position) {
-        mCurrentPosition =position;
+        mCurrentPosition = position;
         BestRecipe currentOnlinerecipe = mOnlineRecipes.get(position);
         String recipeTitle = currentOnlinerecipe.getRecipeTitle();
         String recipeCategory = currentOnlinerecipe.getCategory();
@@ -72,19 +72,19 @@ public class OnlineRecipeAdapter extends RecyclerView.Adapter<OnlineRecipeAdapte
         String[] amountArray = StringUtils.convertStringToArray(allAmounts);
         String allScales = currentOnlinerecipe.getScale();
         String[] scaleArray = StringUtils.convertStringToArray(allScales);
-        IngredientAdapter mIngredientAdapter ;
+        IngredientAdapter mIngredientAdapter;
         if (ingredientArray.length == amountArray.length && ingredientArray.length == scaleArray.length) {
             for (int i = 0; i < ingredientArray.length; i++) {
                 mIngredientObject.add(new BestRecipe.Ingredients(ingredientArray[i], amountArray[i], scaleArray[i]));
             }
-        }else{
-            Log.e(TAG,"There are missing information in the bestrecipe ingredients ");
+        } else {
+            Log.e(TAG, mContext.getString(R.string.log_missing_information));
         }
-        if(mIngredientObject!= null) {
-            mIngredientAdapter = new IngredientAdapter(mContext, 0, mIngredientObject);
-            holder.mIngredientLV.setAdapter(mIngredientAdapter);
-            Utils.dynamicallySetListViewHeight(holder.mIngredientLV);
-        }
+
+        mIngredientAdapter = new IngredientAdapter(mContext, 0, mIngredientObject);
+        holder.mIngredientLV.setAdapter(mIngredientAdapter);
+        Utils.dynamicallySetListViewHeight(holder.mIngredientLV);
+
 
         String allSteps = currentOnlinerecipe.getSteps();
         String[] stepsArray = StringUtils.convertStringToArray(allSteps);
@@ -93,45 +93,46 @@ public class OnlineRecipeAdapter extends RecyclerView.Adapter<OnlineRecipeAdapte
         Utils.dynamicallySetListViewHeight(holder.mStepsListLV);
 
 
-        String firstImageAddress = currentOnlinerecipe.getImages().size() >= 1 ? currentOnlinerecipe.getImages().get(0): null;
-        String secondImageAddress = currentOnlinerecipe.getImages().size() >= 2 ? currentOnlinerecipe.getImages().get(1): null;
-        String thirdImageAddress = currentOnlinerecipe.getImages().size() >= 3 ? currentOnlinerecipe.getImages().get(2): null;
-        String forthImageAddress = currentOnlinerecipe.getImages().size() >= 4 ? currentOnlinerecipe.getImages().get(3): null;
+        String firstImageAddress = currentOnlinerecipe.getImages().size() >= 1 ? currentOnlinerecipe.getImages().get(0) : null;
+        String secondImageAddress = currentOnlinerecipe.getImages().size() >= 2 ? currentOnlinerecipe.getImages().get(1) : null;
+        String thirdImageAddress = currentOnlinerecipe.getImages().size() >= 3 ? currentOnlinerecipe.getImages().get(2) : null;
+        String forthImageAddress = currentOnlinerecipe.getImages().size() >= 4 ? currentOnlinerecipe.getImages().get(3) : null;
 
         holder.mListTitleTextView.setText(recipeTitle);
         holder.mListUserNameTextView.setText(userNameToshow);
         holder.mListCategoryTextView.setText(recipeCategory);
-        String servingsString = mContext.getString(R.string.servings_txt)  +String.valueOf(servigs);
+        String servingsString = mContext.getString(R.string.servings_txt) + String.valueOf(servigs);
         holder.mListServingsTextView.setText(servingsString);
         holder.mListPrepTimeTextView.setText(String.valueOf(prepTime));
         holder.mListCookTimeTextView.setText(String.valueOf(cookingTime));
         holder.mListYeildTimeTextView.setText(String.valueOf(yeildTime));
         holder.mListTotalTimeTextView.setText(String.valueOf(totalTime));
-        if (firstImageAddress != null ) Picasso.with(this.mContext).load(Uri.parse(firstImageAddress))
-                .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV1);
-        if (secondImageAddress != null )Picasso.with(this.mContext).load(Uri.parse(secondImageAddress))
-                .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV2);
-        if (thirdImageAddress != null )Picasso.with(this.mContext).load(Uri.parse(thirdImageAddress))
-                .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV3);
-        if (forthImageAddress != null )Picasso.with(this.mContext).load(Uri.parse(forthImageAddress))
-                .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV4);
+        if (firstImageAddress != null)
+            Picasso.with(this.mContext).load(Uri.parse(firstImageAddress))
+                    .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV1);
+        if (secondImageAddress != null)
+            Picasso.with(this.mContext).load(Uri.parse(secondImageAddress))
+                    .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV2);
+        if (thirdImageAddress != null)
+            Picasso.with(this.mContext).load(Uri.parse(thirdImageAddress))
+                    .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV3);
+        if (forthImageAddress != null)
+            Picasso.with(this.mContext).load(Uri.parse(forthImageAddress))
+                    .placeholder(R.drawable.pic_placeholder).fit().into(holder.mListIV4);
     }
 
     @Override
     public int getItemCount() {
-        if(mOnlineRecipes != null){
+        if (mOnlineRecipes != null) {
             return mOnlineRecipes.size();
-        }
-        else
+        } else
             return 0;
     }
 
-    public class OnlineRecipeViewHolder extends RecyclerView.ViewHolder{
+    public class OnlineRecipeViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mListTitleTextView,mListUserNameTextView, mListCategoryTextView, mListServingsTextView
-                ,mListPrepTimeTextView, mListCookTimeTextView,mListYeildTimeTextView
-                ,mListTotalTimeTextView;
-        ImageView mListIV1,mListIV2,mListIV3,mListIV4;
+        TextView mListTitleTextView, mListUserNameTextView, mListCategoryTextView, mListServingsTextView, mListPrepTimeTextView, mListCookTimeTextView, mListYeildTimeTextView, mListTotalTimeTextView;
+        ImageView mListIV1, mListIV2, mListIV3, mListIV4;
         ListView mIngredientLV, mStepsListLV;
 
         public OnlineRecipeViewHolder(View itemView) {
@@ -140,7 +141,7 @@ public class OnlineRecipeAdapter extends RecyclerView.Adapter<OnlineRecipeAdapte
             mListUserNameTextView = itemView.findViewById(R.id.od_list_username);
             mListCategoryTextView = itemView.findViewById(R.id.od_list_category_tv);
             mListServingsTextView = itemView.findViewById(R.id.od_list_servings_tv);
-            mListPrepTimeTextView =itemView.findViewById(R.id.od_prep_time_tv_int);
+            mListPrepTimeTextView = itemView.findViewById(R.id.od_prep_time_tv_int);
             mListCookTimeTextView = itemView.findViewById(R.id.od_cook_time_tv_int);
             mListYeildTimeTextView = itemView.findViewById(R.id.od_yeild_time_tv_int);
             mListTotalTimeTextView = itemView.findViewById(R.id.od_list_total_time_tv_int);

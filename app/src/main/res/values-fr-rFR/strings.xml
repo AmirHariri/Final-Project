@@ -75,4 +75,7 @@
     <string name="fab_description">Ajouter une nouvelle recette</string>
     <string name="recipe_toast_text">recette!</string>
 
+    <string name="later_text">Plus tard!</string>
+    <string name="log_missing_information">Il manque des informations dans les ingrédients bestrecipe</string>
+
 </resources>
