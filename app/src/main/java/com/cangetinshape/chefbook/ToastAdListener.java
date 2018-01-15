@@ -43,16 +43,16 @@ public class ToastAdListener extends AdListener {
         mErrorReason = "";
         switch (errorCode) {
             case AdRequest.ERROR_CODE_INTERNAL_ERROR:
-                mErrorReason = "Internal error";
+                mErrorReason = mContext.getString(R.string.internal_error_text);
                 break;
             case AdRequest.ERROR_CODE_INVALID_REQUEST:
-                mErrorReason = "Invalid request";
+                mErrorReason = mContext.getString(R.string.invalid_request_text);
                 break;
             case AdRequest.ERROR_CODE_NETWORK_ERROR:
-                mErrorReason = "Network Error";
+                mErrorReason = mContext.getString(R.string.network_error_text);
                 break;
             case AdRequest.ERROR_CODE_NO_FILL:
-                mErrorReason = "No fill";
+                mErrorReason = mContext.getString(R.string.no_fill_text);
                 break;
         }
         Toast.makeText(mContext,

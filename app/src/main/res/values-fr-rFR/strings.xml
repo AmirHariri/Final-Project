@@ -77,5 +77,9 @@
 
     <string name="later_text">Plus tard!</string>
     <string name="log_missing_information">Il manque des informations dans les ingrédients bestrecipe</string>
+    <string name="internal_error_text">Erreur interne</string>
+    <string name="invalid_request_text">Requête invalide</string>
+    <string name="network_error_text">Erreur réseau</string>
+    <string name="no_fill_text">Pas de remplissage</string>
 
 </resources>

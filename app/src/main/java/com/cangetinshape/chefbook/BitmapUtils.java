@@ -1,21 +1,16 @@
 package com.cangetinshape.chefbook;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.content.FileProvider;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,20 +96,21 @@ class BitmapUtils {
         }
         return deleted;
     }
-
+/*
     /**
      * Helper method for adding the photo to the system photo gallery so it can be accessed
      * from other apps.
      *
      * @param imagePath The path of the saved image
      */
+    /*
     private static void galleryAddPic(Context context, String imagePath) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(imagePath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         context.sendBroadcast(mediaScanIntent);
-    }
+    }*/
 
     /**
      * Helper method for saving the image.
@@ -159,13 +155,14 @@ class BitmapUtils {
         }
         return savedImagePath;
     }
-
+/*
     /**
      * Helper method for sharing an image.
      *
      * @param context   The image context.
      * @param imagePath The path of the image to be shared.
      */
+    /*
     static void shareImage(Context context, String imagePath) {
         // Create the share intent and start the share activity
         File imageFile = new File(imagePath);
@@ -194,7 +191,7 @@ class BitmapUtils {
      * @param image the biteArray to be converted to Bitmap
      * @return
      */
-
+/*
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
@@ -205,6 +202,7 @@ class BitmapUtils {
      * @param picturePath the to get the picture.
      * @return the picture for the report, or null if no picture was found.
      */
+/*
     public static Bitmap getPictureFromPath(String picturePath) {
         if (picturePath == null || picturePath.length() == 0)
             return (null);
@@ -212,6 +210,6 @@ class BitmapUtils {
         Bitmap returnPicture = BitmapFactory.decodeFile(picturePath);
 
         return returnPicture;
-    }
+    }*/
 
 }
